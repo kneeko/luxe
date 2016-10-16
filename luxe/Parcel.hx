@@ -227,6 +227,34 @@ class Parcel {
 
                 } //each texts
 
+			
+            //shader
+
+                for(_shader in list.shaders) {
+
+                    ++_load_index;
+
+                    if(!is_loaded(_shader.id)) {
+
+                        loaded.push(_shader.id);
+                        Luxe.timer.schedule(load_time_spacing*_load_index, function() {
+
+                            var _load = system.load_shader( _shader.id, {
+                                frag_id: _shader.frag_id,
+                                vert_id: _shader.vert_id
+                            });
+
+                            _handle(_shader.id, _load);
+
+                        }); //timer
+
+                    } else { //!loaded
+                        log('$id / already had ${_shader.id} loaded, skipped');
+                        one_loaded(_shader.id, _load_id, system.get(_shader.id), ++_index, length);
+                    }
+
+                } //each shaders
+
             //json
 
                 for(_json in list.jsons) {
@@ -305,32 +333,6 @@ class Parcel {
 
                 } //each fonts
 
-            //shader
-
-                for(_shader in list.shaders) {
-
-                    ++_load_index;
-
-                    if(!is_loaded(_shader.id)) {
-
-                        loaded.push(_shader.id);
-                        Luxe.timer.schedule(load_time_spacing*_load_index, function() {
-
-                            var _load = system.load_shader( _shader.id, {
-                                frag_id: _shader.frag_id,
-                                vert_id: _shader.vert_id
-                            });
-
-                            _handle(_shader.id, _load);
-
-                        }); //timer
-
-                    } else { //!loaded
-                        log('$id / already had ${_shader.id} loaded, skipped');
-                        one_loaded(_shader.id, _load_id, system.get(_shader.id), ++_index, length);
-                    }
-
-                } //each shaders
 
             //audio
 

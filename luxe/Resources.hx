@@ -291,7 +291,7 @@ class Resources {
 
     } //load_font
 
-    public function load_shader(_id:String, _options:LoadShaderOptions) : Promise {
+    public function load_shader(_id:String, ?_options:LoadShaderOptions) : Promise {
 
         assertnull(_id);
 
@@ -305,11 +305,18 @@ class Resources {
 
         _debug('shader / loading / $_id');
 
+		var _frag_id = 'default';
+		var _vert_id = 'default';
+		if (_options != null) {
+			_frag_id = _options.frag_id != null ? _options.frag_id : 'default';
+			_vert_id = _options.vert_id != null ? _options.vert_id : 'default';
+		}
+
         _resource = new Shader({
             id: _id,
             system: this,
-            frag_id: _options.frag_id,
-            vert_id: _options.vert_id
+            frag_id: _frag_id,
+            vert_id: _vert_id
         });
 
         add(_resource);

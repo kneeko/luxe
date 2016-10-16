@@ -305,7 +305,7 @@ class BitmapFont extends Resource {
                     if(_prior != null) {
                         _tex_get.push( _prior.reload() );
                     } else {
-                        _tex_get.push( system.load_texture(_path) );
+                        _tex_get.push( system.load_texture(_path, { load_premultiply_alpha: true }) );
                     }
 
                 }  //each page
