@@ -85,7 +85,7 @@ class Renderer {
 
         #if luxe_native
             GL.clearDepth(1.0);
-            GL.clearColor(0,0,0,1);
+            GL.clearColor(0.961, 0.878, 0.753, 1.0);
             GL.clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
             core.app.runtime.window_swap();
             GL.clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
@@ -99,7 +99,7 @@ class Renderer {
     public function init() {
 
         state = new RenderState(this);
-        clear_color = new Color().rgb(0x1a1a1a);
+        clear_color = new Color().rgb(0xf5e0c0);
         stats = new RendererStats();
         batchers = [];
 
